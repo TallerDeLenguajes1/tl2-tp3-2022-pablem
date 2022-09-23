@@ -1,14 +1,21 @@
 public class Pedido
 {
+    static private int pedidosRealizados = 0;
+
     int nro;
     string obs;
     EstadoPedido estado;
     Cliente cliente;
 
     //Constructor
-    public Pedido(int nro, string obs, EstadoPedido estado, Cliente cliente)
+    // public Pedido() {
+    //     this.Nro = ++pedidosRealizados;
+    //     this.Estado = EstadoPedido.pendiente;
+    //     this.Cliente = cliente;
+    // }
+    public Pedido(string obs, EstadoPedido estado, Cliente cliente)
     {
-        this.Nro = nro;
+        this.Nro = ++pedidosRealizados;
         this.Obs = obs;
         this.Estado = estado;
         this.Cliente = cliente;
@@ -20,7 +27,7 @@ public class Pedido
     public EstadoPedido Estado { get => estado; set => estado = value; }
     public Cliente Cliente { get => cliente; set => cliente = value; }
 
-    
+
 
 
 }

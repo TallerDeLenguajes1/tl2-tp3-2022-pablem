@@ -28,17 +28,16 @@ public class Cliente : Persona
     public Cliente(int id, string nom, string dir, string tel,string referenciaDireccion) : base(id,nom,dir,tel)
     {
         this.ReferenciaDireccion = referenciaDireccion;
+
     }
     //Getters & Setters
     public string ReferenciaDireccion { get => referenciaDireccion; set => referenciaDireccion = value; }
-
-
 }
 
 public class Cadete : Persona
 {
     List<Pedido> listaPedidos;
-    
+
     //Constructor
     public Cadete(int id, string nom, string dir, string tel) : base(id,nom,dir,tel)
     {

@@ -1,5 +1,5 @@
 public enum EstadoPedido {
-    anulado,
-    pendiente,
-    entregado,
+    Anulado,
+    Pendiente,
+    Entregado,
 }
