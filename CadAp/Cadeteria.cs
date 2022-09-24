@@ -5,11 +5,11 @@ public class Cadeteria
     List<Cadete> listaCadetes;
 
     //Constructor
-    public Cadeteria(string nombre, string telefono)
+    public Cadeteria(string nombre, string telefono, List<Cadete> listaCadetes)
     {
-        this.Nombre = nombre;
-        this.Telefono = telefono;
-        this.ListaCadetes = new List<Cadete>();
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.listaCadetes = listaCadetes;
     }
 
     //Getters & Setters

@@ -13,12 +13,12 @@ public class Pedido
     //     this.Estado = EstadoPedido.pendiente;
     //     this.Cliente = cliente;
     // }
-    public Pedido(string obs, EstadoPedido estado, Cliente cliente)
+    public Pedido(string obs, Cliente cliente)
     {
-        this.Nro = ++pedidosRealizados;
-        this.Obs = obs;
-        this.Estado = estado;
-        this.Cliente = cliente;
+        this.nro = ++pedidosRealizados;
+        this.obs = obs;
+        this.estado = EstadoPedido.Pendiente;
+        this.cliente = cliente;
     }
 
     //Getters & Setters
