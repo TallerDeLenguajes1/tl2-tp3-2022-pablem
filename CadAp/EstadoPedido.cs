@@ -1,5 +1,6 @@
 public enum EstadoPedido {
-    Anulado,
     Pendiente,
+    Viajando,
     Entregado,
+    Anulado
 }

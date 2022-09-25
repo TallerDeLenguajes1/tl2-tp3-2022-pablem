@@ -8,9 +8,118 @@
         var cadeteria1 = new Cadeteria("Servimoto YB","4222222",listaCadetes);
         var cadeteria2 = new Cadeteria("Servimoto B Sur","4233333",listaCadetes2);
 
+        string opcion;
+        do {
+            Console.Clear();
+            mostrarPedidos();
+            Console.WriteLine("\nElija la operación:");
+            Console.WriteLine("\n(A)signar Cadete   (D)ar de alta   Cambiar (E)stado   Cambiar (C)adete    (S)alir"); //ver cadeteria 2???
 
+            opcion = Console.ReadLine().ToLower();
+            if (opcion == "a")
+                asignarPedido();
+            if (opcion == "d")
+                altaPedido();
+            if (opcion == "e")
+                cambiarEstado();
+            if (opcion == "c")
+                cambiarCadete();
+        } while (opcion != "s");
+        
+        //PROCEDIMIENTOS PARA CADA OPERACIÓN
 
+        void mostrarPedidos()//argumentos: estados?
+        {
+            Console.WriteLine("\nLista de pedidos:");
+            foreach (var pedido in listaPedidos) //if: estados
+            {
+                pedido.mostrar();
+            }
+            Console.WriteLine();
+        }
+
+        void asignarPedido()
+        {
+            Console.Clear();
+            foreach (var pedido in listaPedidos) if(pedido.Estado == EstadoPedido.Pendiente)
+            {
+                pedido.mostrar();
+                string op = " ";
+                foreach (var cadete in listaCadetes) 
+                {
+                    Console.WriteLine("\t¿Asignar a cadete "+cadete.Id+" "+cadete.Nombre+"?(s/n)");
+                    op = Console.ReadLine().ToLower();
+                    if (op == "s") 
+                    {
+                        cadete.agregarPedido(pedido);
+                        pedido.Estado = EstadoPedido.Viajando;
+                        break;
+                    }
+                }
+            }
+        }
+        void altaPedido() 
+        {
+            Console.Clear();
+            foreach (var pedido in listaPedidos) if(pedido.Estado == EstadoPedido.Viajando)
+            {
+                pedido.mostrar();
+                string op = " ";
+                Console.WriteLine("\t¿Llegó el pedido?(s/n)");
+                op = Console.ReadLine().ToLower();
+                if (op == "s") 
+                    pedido.Estado = EstadoPedido.Entregado;
+            }
+        }
+        void cambiarEstado()
+        {
+            Console.Clear();
+            foreach (var pedido in listaPedidos) if(pedido.Estado == EstadoPedido.Viajando || pedido.Estado == EstadoPedido.Pendiente)
+            {
+                pedido.mostrar();
+                string op = " ";
+                Console.WriteLine("\t¿Anular el pedido?(s/n)");
+                op = Console.ReadLine().ToLower();
+                if (op == "s") 
+                    pedido.Estado = EstadoPedido.Anulado;
+            }
+        }
+        void cambiarCadete() ///Anda pero a qué costo!? xD
+        {
+            Console.Clear();
+            foreach (var cadete in listaCadetes)
+            {
+                if(cadete.ListaPedidos!=null && cadete.ListaPedidos.Any())
+                {
+                    string op = " ";
+                    foreach (var pedido in cadete.ListaPedidos) if(pedido.Estado == EstadoPedido.Viajando)
+                    {
+                        pedido.mostrar();
+                        Console.WriteLine("\t¿Cambiar cadete "+cadete.Id+" "+cadete.Nombre+"?(s/n)");
+                        op = Console.ReadLine().ToLower();
+                        if (op == "s") 
+                        {
+                            string op2 = " ";
+                            foreach (var cadt in listaCadetes) 
+                                {
+                                    Console.WriteLine("\t¿Asignar a cadete "+cadt.Id+" "+cadt.Nombre+"?(s/n)");
+                                    op2 = Console.ReadLine().ToLower();
+                                    if (op2 == "s") 
+                                    {
+                                        cadete.ListaPedidos.Remove(pedido);
+                                        cadt.agregarPedido(pedido);
+                                        break;
+                                    }
+                                }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    //MÉTODOS PARA CARGAR DATOS DE CSVs
 
     private static List<Cadete> cargarCadetes(string ruta)
     {

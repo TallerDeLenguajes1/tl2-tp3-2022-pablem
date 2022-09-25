@@ -8,11 +8,6 @@ public class Pedido
     Cliente cliente;
 
     //Constructor
-    // public Pedido() {
-    //     this.Nro = ++pedidosRealizados;
-    //     this.Estado = EstadoPedido.pendiente;
-    //     this.Cliente = cliente;
-    // }
     public Pedido(string obs, Cliente cliente)
     {
         this.nro = ++pedidosRealizados;
@@ -26,6 +21,11 @@ public class Pedido
     public string Obs { get => obs; set => obs = value; }
     public EstadoPedido Estado { get => estado; set => estado = value; }
     public Cliente Cliente { get => cliente; set => cliente = value; }
+
+    public void mostrar()
+    {
+        Console.WriteLine("+ Pedido: {0} - Cliente: {1} - Estado: {2}", nro, cliente.Nombre, estado);
+    }
 
 
 

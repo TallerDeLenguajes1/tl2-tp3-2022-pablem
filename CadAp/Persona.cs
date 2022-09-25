@@ -6,7 +6,7 @@ public class Persona
     string nombre;
     string direccion;
     string telefono;
-    
+
     //Constructor Base
     public Persona(string nombre, string direccion, string telefono)
     {
@@ -45,7 +45,7 @@ public class Cadete : Persona
         listaPedidos = new List<Pedido>();
     }
     //Getters & Setters
-    // public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
+    public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
 
     //Métodos de cadete:
     public void agregarPedido(Pedido pedido) {
