@@ -25,6 +25,11 @@
             if (opcion == "c")
                 cambiarCadete();
         } while (opcion != "s");
+
+        //INFORME AL FINAL DE LA JORNADA:
+
+        Console.WriteLine("\nMonto Ganado (en cadetería 1): "+cadeteria1.calcularPago());
+        
         
         //PROCEDIMIENTOS PARA CADA OPERACIÓN
 
@@ -117,6 +122,12 @@
                 }
             }
         }
+    }
+
+    //MÉTODOS PARA GENERAR EL INFORME 
+
+    void calcularTotal() {
+
     }
 
     //MÉTODOS PARA CARGAR DATOS DE CSVs

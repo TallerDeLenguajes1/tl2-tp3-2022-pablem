@@ -52,6 +52,17 @@ public class Cadete : Persona
         listaPedidos.Add(pedido);
     }
 
+    public int calcularPago() { 
+        int pago = 0;
+        foreach (var pedido in listaPedidos)
+        {
+            if(pedido.Estado==EstadoPedido.Entregado) {
+                pago += 300;
+            }
+        }
+        return pago;
+    }
+
     public void jornalACobrar() {
 
     }
