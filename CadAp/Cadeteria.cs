@@ -27,15 +27,21 @@ public class Cadeteria
         return pago;
     }
 
+    public float calcularPromedio() 
+    {
+        int nroPeiddos = 0;
+        foreach (var cadete in listaCadetes)
+        {
+            nroPeiddos += cadete.pedidosEntregados().Count;
+            Console.WriteLine(cadete.pedidosEntregados().Count);
+        }    
+        return nroPeiddos/(float)(listaCadetes.Count);
+    }
+
     public void mostrarPedidos() {
          foreach (var cadete in listaCadetes)
         {
-            var cons =
-                from cad in cadete.ListaPedidos
-                where cad.Estado==EstadoPedido.Entregado
-                select cad;
-
-            Console.WriteLine($"-Cadete Cód. {cadete.Id} - Pedidos: {cons.Count()} - Ganancia: {}");
+            Console.WriteLine($"\n-Cadete Cód. {cadete.Id} - Nro. de Pedidos: {cadete.pedidosEntregados().Count} - Ganancia: {cadete.calcularPago()}");
         }
     }
 }

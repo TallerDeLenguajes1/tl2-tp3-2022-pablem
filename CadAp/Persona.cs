@@ -54,16 +54,21 @@ public class Cadete : Persona
 
     public int calcularPago() { 
         int pago = 0;
-        foreach (var pedido in listaPedidos)
-        {
-            if(pedido.Estado==EstadoPedido.Entregado) {
-                pago += 300;
-            }
+        foreach (var pedido in this.pedidosEntregados()) {
+            pago += 300;
         }
         return pago;
     }
 
-    public void jornalACobrar() {
+    public List<Pedido> pedidosEntregados() {
 
+        /*-------- Consultas LINQ en C# ----------*/
+        var query =
+            from cad in listaPedidos
+            where cad.Estado==EstadoPedido.Entregado
+            select cad;
+        /*----------------------------------------*/
+
+        return query.ToList();
     }
 }

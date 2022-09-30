@@ -13,15 +13,15 @@
             Console.Clear();
             mostrarPedidos();
             Console.WriteLine("\nElija la operación:");
-            Console.WriteLine("\n(A)signar Cadete   (D)ar de alta   Cambiar (E)stado   Cambiar (C)adete    (S)alir"); //ver cadeteria 2???
+            Console.WriteLine("\n(A)lta de Pedido   Cambiar(E)stado   A(N)ular Pedido   (C)ambiar Cadete    (S)alir"); //ver cadeteria 2???
 
             opcion = Console.ReadLine().ToLower();
             if (opcion == "a")
                 asignarPedido();
-            if (opcion == "d")
-                altaPedido();
             if (opcion == "e")
-                cambiarEstado();
+                entregarPedido();
+            if (opcion == "n")
+                anularPedido();
             if (opcion == "c")
                 cambiarCadete();
         } while (opcion != "s");
@@ -29,7 +29,9 @@
         //INFORME AL FINAL DE LA JORNADA:
 
         Console.WriteLine("\nMonto Ganado (en cadetería 1): "+cadeteria1.calcularPago());
-        
+        Console.WriteLine("\nEnvíos promedio p/ cadete: "+cadeteria1.calcularPromedio());
+        Console.WriteLine("\nDetalle de pedidos (en cadetería 1)");
+        cadeteria1.mostrarPedidos();
         
         //PROCEDIMIENTOS PARA CADA OPERACIÓN
 
@@ -63,7 +65,7 @@
                 }
             }
         }
-        void altaPedido() 
+        void entregarPedido() 
         {
             Console.Clear();
             foreach (var pedido in listaPedidos) if(pedido.Estado == EstadoPedido.Viajando)
@@ -76,7 +78,7 @@
                     pedido.Estado = EstadoPedido.Entregado;
             }
         }
-        void cambiarEstado()
+        void anularPedido()
         {
             Console.Clear();
             foreach (var pedido in listaPedidos) if(pedido.Estado == EstadoPedido.Viajando || pedido.Estado == EstadoPedido.Pendiente)
@@ -122,12 +124,6 @@
                 }
             }
         }
-    }
-
-    //MÉTODOS PARA GENERAR EL INFORME 
-
-    void calcularTotal() {
-
     }
 
     //MÉTODOS PARA CARGAR DATOS DE CSVs
